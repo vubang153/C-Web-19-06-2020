@@ -1,0 +1,36 @@
+﻿<script src='~/Areas/Admin/Content/js/jquery-2.2.3.min.js'></script>
+<script src="~/Areas/Admin/Content/js/jquery.unobtrusive-ajax.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<!-- //Required common Js -->
+<!-- Sidebar-nav Js -->
+<script>
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
+<!--// Sidebar-nav Js -->
+<!-- dropdown nav -->
+<script>
+    $(document).ready(function () {
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+    });
+</script>
+<!-- //dropdown nav -->
+<!-- Js for bootstrap working-->
+<script src="~/Areas/Admin/Content/js/bootstrap.min.js"></script>
+<!-- //Js for bootstrap working -->

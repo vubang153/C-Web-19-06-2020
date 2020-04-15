@@ -1,0 +1,100 @@
+﻿@model PagedList.IPagedList<Model.EF.Tour>
+@using PagedList.Mvc;
+@using BookingTour.Commons;
+@section custom_css {
+    <link href="~/Content/HomePagedList.css" rel="stylesheet" />
+    <style>
+        .record-not-found ul li {
+            list-style-type: none;
+            text-align: center;
+        }
+
+        .record-not-found {
+            width: 100%;
+        }
+    </style>
+}
+@section js_footer {
+    <script src="~/Scripts/Validation/RegisterValidation.js">
+    </script>
+    <script src="~/Scripts/Validation/LoginValidation.js">
+    </script>
+
+    <script src="~/Scripts/Controllers/LoginController.js"></script>
+    <script>
+        if (@Session["price_limit"] != null) {
+            $("option[value='@Session["price_limit"]']").attr("selected", true);
+        }
+        else {
+            $("#price_limit").children().removeAttr("selected");
+        }
+    </script>
+}
+@section modal {
+    @Html.Partial("~/Views/Login/_LoginFormModal.cshtml");
+    @Html.Partial("~/Views/Register/_RegisterFormModal.cshtml");
+}
+<!-- Start search bar-->
+@RenderPage("_SearchBar.cshtml")
+<!-- End search bar-->
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center pb-5">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Những nơi tuyệt vời nhất để trải nghiệm</h2>
+                <p>Đừng bao giờ ngần ngại đi xa hơn nữa, vượt qua mọi đại dương, mọi biên giới, mọi quốc gia và mọi đức tin.</p>
+            </div>
+        </div>
+        <!-- List tour -->
+        <div class="row">
+            <!-- 12 records -->
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                    <div class="project">
+                        <div class="img">
+                            <img src="@item.image" class="img-fluid" alt="Colorlib Template">
+                        </div>
+                        <div class="text">
+                            <h4 class="price">$ @item.price</h4>
+                            <span>Tour @item.days_of_tour ngày</span>
+                            <h3><a href="project.html">@item.name</a></h3>
+                            <div class="star d-flex clearfix">
+                                <div class="mr-auto float-left">
+                                    <span class="ion-ios-star"></span>
+                                    <span class="ion-ios-star"></span>
+                                    <span class="ion-ios-star"></span>
+                                    <span class="ion-ios-star"></span>
+                                    <span class="ion-ios-star"></span>
+                                </div>
+                                <div class="mr-auto float-left star-rating">
+                                    @for (int i = 1; i <= Math.Round(item.rating); i++)
+                                    {
+                                        <span class="ion-ios-star text-warning"></span>
+                                    }
+                                </div>
+                                <div class="float-right">
+                                    <span class="rate"><a href="#">(@item.rating_count)</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="@item.image" class="icon image-popup d-flex justify-content-center align-items-center">
+                            <span class="icon-expand"></span>
+                        </a>
+                    </div>
+                </div>
+            }
+            @Html.ValidationSummary(false, "", new { @class = "record-not-found" })
+        </div>
+        <!-- End list tour-->
+        <!-- Start Pagination bar -->
+        <div class="row mt-5">
+            <div class="col text-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString, }))
+            </div>
+        </div>
+        <!-- End pagination bar-->
+    </div>
+</section>
+

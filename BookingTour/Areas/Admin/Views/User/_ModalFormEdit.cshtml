@@ -1,0 +1,68 @@
+﻿@using Model.EF;
+@{
+    var provinceList = (List<Province>)ViewBag.provinceList;
+}
+<div class="modal fade" id="modalEditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { autocomplete = "off" }))
+    {
+        <input type="hidden" name="id" id="id" />
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body mx-3">
+                    <input type="hidden" name="id">
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="username">Tài khoản</label>
+                        <input type="text" id="username" class="form-control validate" name="username">
+                    </div>
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="password">Mật khẩu</label>
+                        <input type="password" id="password" class="form-control validate" name="password">
+                    </div>
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="name">Họ và tên</label>
+                        <input type="text" id="name" class="form-control validate" name="name">
+                    </div>
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="email">Email</label>
+                        <input type="text" id="email" class="form-control validate" name="email">
+                    </div>
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="DOB">Ngày sinh</label>
+                        <input type="text" id="DOB" class="form-control validate form-DOB" placeholder="DD/MM/YYYY" name="DOB">
+                    </div>
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="address">Địa chỉ</label>
+                        <input type="text" id="address" class="form-control validate" name="address">
+                    </div>
+
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="districtID">Quận/ Huyện</label>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <select class="form-control col-5 districtSelectedForm" id="edit-districtSelectedForm" name="districtID">
+                                    <option selected disabled hidden>Quận</option>
+                                    @foreach (var item in provinceList)
+                                    {
+                                        <option value="@item.id">@item.name</option>
+                                    }
+                                </select>
+                                <select class="form-control col-5 ml-2 provinceSelectedForm" id="edit-provinceSelectedForm" name="provinceID">
+                                    <option selected disabled hidden>Huyện/ Phường</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-form mb-1">
+                        <label data-error="wrong" data-success="right" for="">Giới tính</label><br />
+                        <input type="radio" class="validate" name="gender" value="1" id="male-gender"> Nam
+                        <input type="radio" class="validate" name="gender" value="0" id="female-gender"> Nữ
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-indigo">Sửa<i class="fas fa-paper-plane-o ml-1"></i></button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

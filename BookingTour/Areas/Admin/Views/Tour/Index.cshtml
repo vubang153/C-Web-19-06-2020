@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<Model.EF.Tour>
+@using PagedList.Mvc;
+@using BookingTour.Commons;
+@section custom_css {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+
+}
+<section class="tables-section">
+    <!-- table7 -->
+    <div class="outer-w3-agile mt-3">
+        <h4 class="tittle-w3-agileits mb-4">@ViewBag.TableName</h4>
+        <div class="table-responsive">
+            @using (Html.BeginForm("Index", "Tour", FormMethod.Get, new { @class = "form-inline mx-auto search-form mb-3" }))
+            {
+                <input class="form-control mr-sm-2" value="@ViewBag.searchString" type="search" placeholder="Nhập từ khoá" aria-label="Search" name="searchString">
+                <button class="btn btn-style my-2 my-sm-0" type="submit">Tìm kiếm</button>
+
+            }
+            <a class="btn btn-success text-white mb-2 ml-1" href="/Admin/Tour/Insert">Thêm mới</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Đánh giá</th>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">#</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.id">
+                            <th scope="row">@item.id</th>
+                            <td>@item.name</td>
+                            <td>@item.price</td>
+                            <td>@item.rating</td>
+                            <td>@item.image</td>
+                            <td><a href="#" class="btn-active" data-id="@item.id">@Commons.convertString(item.status, "Mở", "Đóng")</a></td>
+                            <td>
+                                <a href="/Admin/Tour/Edit/@item.id" data-id="@item.id">Sửa</a>
+                                |
+                                @Ajax.ActionLink("Xoá", "Delete", new { @id = item.id }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có muốn xoá bản ghi này?",
+                               OnComplete = "$('#row_" + @item.id + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>@Html.ValidationSummary(false, "", new { @class = "text-center" })</div>
+            <div>@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))</div>
+        </div>
+    </div>
+    <!-- Script query to show modal form-->
+    <!-- Render modal form and it script-->
+    @section js_footer {
+        <script src="~/Areas/Admin/Content/js/controller/TourController.js"></script>
+    }
+
+</section>

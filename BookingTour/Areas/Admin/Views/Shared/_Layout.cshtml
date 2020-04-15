@@ -1,0 +1,35 @@
+﻿<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+@RenderPage("CommonJs.cshtml")
+@RenderSection("custom_css", false)
+@RenderPage("Header.cshtml")
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        @RenderPage("Navigation.cshtml")
+
+        <!-- Page Content Holder -->
+        <div id="content">
+            <!-- top-bar -->
+            @RenderPage("MenuBar.cshtml")
+            <!--// top-bar -->
+            <!-- main-heading -->
+            <!--// main-heading -->
+            <!-- Tables content -->
+            @RenderBody()
+            <!--// Tables content -->
+        </div>
+    </div>
+    <!-- Required js footer, modal_form -->
+
+    @RenderSection("modal_form", required: false)
+    @RenderSection("js_footer", required: false)
+
+
+</body>
+
+</html>

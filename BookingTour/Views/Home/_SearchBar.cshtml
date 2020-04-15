@@ -1,0 +1,67 @@
+﻿<section class="ftco-section ftco-no-pb ftco-no-pt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-wrap-1 ftco-animate p-4">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "search-property-1", autocomplete="off" }))
+                    {
+                        <div class="row">
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Điểm đến</label>
+                                    <div class="form-field">
+                                        <div class="icon"><span class="ion-ios-search"></span></div>
+                                        <input type="text" value="@Session["destination_name"]" class="form-control" name="destination_name" placeholder="Tìm kiếm địa điểm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Ngày Check-in</label>
+                                    <div class="form-field">
+                                        <div class="icon"><span class="ion-ios-calendar"></span></div>
+                                        <input type="text" value="@Session["checkin_date"]" name="checkin_date" class="form-control checkin_date datepicker" data-date-format="dd/mm/yyyy" placeholder="Ngày checkin">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Ngày check-out</label>
+                                    <div class="form-field">
+                                        <div class="icon"><span class="ion-ios-calendar"></span></div>
+                                        <input type="text" value="@Session["checkout_date"]" class="form-control date-picker" name="checkout_date" placeholder="Ngày checkout">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Giới hạn</label>
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                            <select name="price_limit" id="price_limit" class="form-control">
+                                                <option value="0" selected>Không giới hạn</option>
+                                                @for (int i = 200; i <= 16000; i += i)
+                                                {
+                                                    <option value=@i>$ @i</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg align-self-end">
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <input type="submit" value="Tìm kiếm" class="form-control btn btn-primary">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

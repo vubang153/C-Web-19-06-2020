@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- Render head-->
+@RenderSection("custom_css", false)
+@RenderPage("_Header.cshtml")
+<body>
+    @RenderPage("_Navigation.cshtml")
+    <!-- END nav -->
+    <!-- Banner Image-->
+    @RenderPage("_BannerImage.cshtml")
+    <!-- Render Body Page-->
+
+    @RenderBody()
+
+    <!-- Render footer file-->
+    @RenderPage("_Footer.cshtml")
+
+    <!-- loader -->
+    @RenderPage("_LoadingIcon.cshtml")
+
+    <!-- Render modal -->
+    @RenderSection("modal", false)
+
+    <!-- Render js file-->
+    @RenderPage("_Script.cshtml")
+
+    <!-- Js footer -->
+    @RenderSection("js_footer", false)
+
+
+</body>
+</html>
