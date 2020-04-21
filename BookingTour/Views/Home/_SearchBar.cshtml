@@ -1,9 +1,10 @@
-﻿<section class="ftco-section ftco-no-pb ftco-no-pt">
+﻿@model List<Model.EF.TourCategory>
+<section class="ftco-section ftco-no-pb ftco-no-pt">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="search-wrap-1 ftco-animate p-4">
-                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "search-property-1", autocomplete="off" }))
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "search-property-1", autocomplete = "off" }))
                     {
                         <div class="row">
                             <div class="col-lg align-items-end">
@@ -12,6 +13,31 @@
                                     <div class="form-field">
                                         <div class="icon"><span class="ion-ios-search"></span></div>
                                         <input type="text" value="@Session["destination_name"]" class="form-control" name="destination_name" placeholder="Tìm kiếm địa điểm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg align-items-end">
+                                <div class="form-group">
+                                    <label for="#">Loại Tour</label>
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                            <select name="category" id="tour_category" class="form-control">
+                                                <option value="0" selected>Không chọn</option>
+                                                @foreach (var item in Model)
+                                                {
+                                                    if ((long)ViewBag.category_id == item.id)
+                                                    {
+                                                        <option value="@item.id" selected>@item.name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.id">@item.name</option>
+                                                    }
+
+                                                }
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -43,13 +69,22 @@
                                                 <option value="0" selected>Không giới hạn</option>
                                                 @for (int i = 200; i <= 16000; i += i)
                                                 {
-                                                    <option value=@i>$ @i</option>
+                                                    if ((long)ViewBag.price_limit == i)
+                                                    {
+                                                        <option value=@i selected>$ @i</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value=@i>$ @i</option>
+                                                    }
+
                                                 }
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg align-self-end">
                                 <div class="form-group">
                                     <div class="form-field">

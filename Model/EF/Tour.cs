@@ -34,6 +34,8 @@ namespace Model.EF
         [StringLength(100)]
         public string image { get; set; }
 
+        public long? category { get; set; }
+
         public DateTime? created_date { get; set; }
 
         [StringLength(50)]

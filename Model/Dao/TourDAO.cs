@@ -13,7 +13,7 @@ namespace Model.Dao
         {
             db = new BookingTourDbContext();
         }
-        public IEnumerable<Tour> getAll(int page, int pageSize, string keyword, DateTime checkin_date, DateTime checkout_date, int price_limit)
+        public IEnumerable<Tour> getAll(int page, int pageSize, string keyword, DateTime checkin_date, DateTime checkout_date, int price_limit, long category_id)
         {
             IQueryable<Tour> model = db.Tours;
             if (!string.IsNullOrEmpty(keyword))
@@ -23,6 +23,10 @@ namespace Model.Dao
             if (price_limit != 0)
             {
                 model = model.Where(x => x.price <= price_limit);
+            }
+            if (category_id != 0)
+            {
+                model = model.Where(x => x.category == category_id);
             }
 
             model = model.Where(x => x.checkin_date >= checkin_date

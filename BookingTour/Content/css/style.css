@@ -13365,13 +13365,25 @@ textarea.form-control {
     font-size: 15px;
     font-weight: bold;
 }
+
 .error {
     color: red;
     font-size: 0.8em;
 }
+
 .form-register {
     max-width: 600px !important;
 }
+
 .datepicker {
     z-index: 1600 !important;
+}
+
+.record-not-found ul li {
+    list-style-type: none;
+    text-align: center;
+}
+
+.record-not-found {
+    width: 100%;
 }

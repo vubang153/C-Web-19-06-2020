@@ -1,0 +1,64 @@
+﻿@model PagedList.IPagedList<Model.EF.Model.BookingUserTour>
+@using PagedList.Mvc;
+@using BookingTour.Commons;
+@section custom_css {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+<section class="tables-section">
+    <!-- table7 -->
+    <div class="outer-w3-agile mt-3">
+        <h4 class="tittle-w3-agileits mb-4">@ViewBag.TableName</h4>
+        <div class="table-responsive">
+            @using (Html.BeginForm("Index", "Booking", FormMethod.Get, new { @class = "form-inline mx-auto search-form mb-3" }))
+            {
+                <input class="form-control mr-sm-2" value="@ViewBag.searchString" type="search" placeholder="Nhập từ khoá" aria-label="Search" name="searchString">
+                <button class="btn btn-style my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                <select class="form-control ml-5 font-weight-bold border-secondary" name="selectOption" id="selectOption">
+                    <option selected value="2">Tất cả</option>
+                    <option value="1">Hoàn thành</option>
+                    <option value="0">Chưa hoàn thành</option>
+                </select>
+
+            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên đăng nhập</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Ngày đặt</th>
+                        <th scope="col">Lịch check-in</th>
+                        <th scope="col">Lịch check-out</th>
+                        <th scope="col">Trạng thái</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.id">
+                            <th scope="row">@item.id</th>
+                            <td>@item.username</td>
+                            <td>@item.name</td>
+                            <td>@item.DOB</td>
+                            <td>@item.booking_date</td>
+                            <td>@item.checkin_date</td>
+                            <td>@item.checkout_date</td>
+                            <td>@Commons.convertString(item.status, "Hoàn thành", "Chưa hoàn thành")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>@Html.ValidationSummary(false, "", new { @class = "text-center" })</div>
+            <div>@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))</div>
+        </div>
+    </div>
+    <!-- Script query to show modal form-->
+    <!-- Render modal form and it script-->
+    @section js_footer {
+        <script src="~/Areas/Admin/Content/js/controller/BookingController.js"></script>
+    }
+
+</section>

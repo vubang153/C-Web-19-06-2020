@@ -34,9 +34,9 @@ namespace Model.EF
         [StringLength(100)]
         public string address { get; set; }
 
-        public int? provinceID { get; set; }
+        public long? provinceID { get; set; }
 
-        public int? districtID { get; set; }
+        public long? districtID { get; set; }
 
         public DateTime? created_date { get; set; }
 

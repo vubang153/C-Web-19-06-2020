@@ -140,10 +140,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BookingController.cs" />
     <Compile Include="Areas\Admin\Controllers\DistrictController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\RedirectController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TourCommentController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
@@ -193,6 +195,7 @@
     <Content Include="Areas\Admin\Content\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\Content\js\circle_bar.js" />
     <Content Include="Areas\Admin\Content\js\controller\index.js" />
+    <Content Include="Areas\Admin\Content\js\controller\TourCommentController.js" />
     <Content Include="Areas\Admin\Content\js\controller\TourController.js" />
     <Content Include="Areas\Admin\Content\js\controller\userController.js" />
     <Content Include="Areas\Admin\Content\js\controller\validation.js" />
@@ -1681,7 +1684,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\District\" />
     <Folder Include="Areas\Admin\Views\Province\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\.DS_Store" />
@@ -1765,6 +1767,8 @@
     <Content Include="Areas\Admin\Content\js\plugins\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\Tour\Insert.cshtml" />
     <Content Include="Areas\Admin\Views\Tour\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Booking\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TourComment\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Script.cshtml" />

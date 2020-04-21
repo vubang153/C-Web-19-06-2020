@@ -12,10 +12,12 @@ namespace Model.EF
         {
         }
 
+        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<TourCategory> TourCategories { get; set; }
+        public virtual DbSet<TourComment> TourComments { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

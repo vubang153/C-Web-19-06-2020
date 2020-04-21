@@ -22,12 +22,14 @@
     },
     getDistrictByProvinceID: function (s_id, provinceID = 0) {
         $.ajax({
-            url: "/Admin/District/getDistrictByProvinceID",
+            url: '/District/getDistrictByProvinceID',
             data: { id: s_id },
             dataType: "json",
             type: "POST",
+            async: false,
             success: function (res) {
                 var list_district = res.list_district;
+                console.log(list_district);
                 $(".provinceSelectedForm").children().not(':first').remove();
                 for (var i = 0; i < list_district.length; i++) {
                     if (list_district[i].id == provinceID) {

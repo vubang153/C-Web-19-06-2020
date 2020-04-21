@@ -3,39 +3,20 @@
 @using BookingTour.Commons;
 @section custom_css {
     <link href="~/Content/HomePagedList.css" rel="stylesheet" />
-    <style>
-        .record-not-found ul li {
-            list-style-type: none;
-            text-align: center;
-        }
-
-        .record-not-found {
-            width: 100%;
-        }
-    </style>
 }
 @section js_footer {
     <script src="~/Scripts/Validation/RegisterValidation.js">
     </script>
     <script src="~/Scripts/Validation/LoginValidation.js">
     </script>
-
     <script src="~/Scripts/Controllers/LoginController.js"></script>
-    <script>
-        if (@Session["price_limit"] != null) {
-            $("option[value='@Session["price_limit"]']").attr("selected", true);
-        }
-        else {
-            $("#price_limit").children().removeAttr("selected");
-        }
-    </script>
 }
 @section modal {
     @Html.Partial("~/Views/Login/_LoginFormModal.cshtml");
     @Html.Partial("~/Views/Register/_RegisterFormModal.cshtml");
 }
 <!-- Start search bar-->
-@RenderPage("_SearchBar.cshtml")
+@{Html.RenderAction("Category", "Home");}
 <!-- End search bar-->
 
 <section class="ftco-section">
