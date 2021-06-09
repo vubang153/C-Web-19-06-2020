@@ -1,12 +1,6 @@
 ﻿var tourModel = {
     init: function () {
         tourModel.changeStatus();
-        tourModel.datePicker();
-    },
-    datePicker: function () {
-        $(".checkin_date, .checkout_date").datepicker({
-            dateFormat: "dd-mm-yy"
-        });
     },
     changeStatus: function () {
         $('.btn-active').off('click').on('click', function (e) {

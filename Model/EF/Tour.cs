@@ -9,6 +9,12 @@ namespace Model.EF
     [Table("Tour")]
     public partial class Tour
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tour()
+        {
+            Bookings = new HashSet<Booking>();
+        }
+
         public long id { get; set; }
 
         [Required]
@@ -26,26 +32,30 @@ namespace Model.EF
 
         public int? days_of_tour { get; set; }
 
+        public long departure_place { get; set; }
+
         public double rating { get; set; }
 
         public int? rating_count { get; set; }
+
+        public int? view_count { get; set; }
+
+        [StringLength(100)]
+        public string main_image { get; set; }
 
         [Required]
         [StringLength(100)]
         public string image { get; set; }
 
-        public long? category { get; set; }
+        public long category { get; set; }
 
-        public DateTime? created_date { get; set; }
+        public int? remaining_slot { get; set; }
 
-        [StringLength(50)]
-        public string created_by { get; set; }
-
-        public DateTime? modified_date { get; set; }
-
-        [StringLength(50)]
-        public string modified_by { get; set; }
+        public int? total_slot { get; set; }
 
         public int status { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

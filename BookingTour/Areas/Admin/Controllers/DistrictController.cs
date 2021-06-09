@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BookingTour.Areas.Admin.Controllers
 {
-    public class DistrictController : Controller
+    public class DistrictController : BaseController
     {
         // GET: Admin/District
         public JsonResult getDistrictByProvinceID(long id)

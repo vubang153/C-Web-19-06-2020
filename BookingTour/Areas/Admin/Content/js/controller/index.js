@@ -1,7 +1,6 @@
-﻿$.fn.datepicker.defaults.format = "dd/mm/yyyy";
-$(document).ready(function () {
-    $('.checkin_date, .checkout_date').datepicker({
-        'format': 'd/m/yyyy',
-        'autoclose': true
+﻿$(document).ready(function () {
+    $('.checkin_date, .checkout_date, .datetime-picker').datepicker({
+        dateFormat: "dd/mm/yy",
+        autoclose: true
     });
 });

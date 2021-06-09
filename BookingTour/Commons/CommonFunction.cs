@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Model.EF;
 
 namespace BookingTour.Commons
 {
@@ -98,6 +99,11 @@ namespace BookingTour.Commons
             Session.Remove("checkin_date");
             Session.Remove("checkout_date");
             Session.Remove("price_limit");
+        }
+        public long getUserSessionID()
+        {
+            var user = (User)HttpContext.Session["user"];
+            return user.id;
         }
     }
 }

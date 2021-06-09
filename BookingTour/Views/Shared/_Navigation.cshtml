@@ -16,12 +16,28 @@
                 @if (userSession == null)
                 {
                     <li class="nav-item"><a data-toggle="modal" data-target="#loginForm" class="nav-link">Đăng nhập</a></li>
-                    <li class="nav-item"><a data-toggle="modal" data-target="#register_form"class="nav-link">Đăng ký</a></li>
+                    <li class="nav-item"><a data-toggle="modal" data-target="#register_form" class="nav-link">Đăng ký</a></li>
                 }
                 else
                 {
-                    <li class="nav-item"><a href="#" class="nav-link text-warning font-weight-bold">@userSession.name</a></li>
-                    <li class="nav-item"><a href="/User/Logout" class="nav-link">Đăng xuất</a></li>
+                    <li class="nav-item position-relative" id="username">
+                        <a href="#" class="nav-link text-white font-weight-bold">@userSession.name</a>
+                        <ul id="list-menu-account">
+                            <li>
+                                <a href="/User/Profile">Quản lý tài khoản</a>
+
+                            </li>
+                            <li>
+                                <a href="/User/Order">Quản lý tour</a>
+                            </li>
+                            <li>
+                                <a href="/User/Logout">Đăng xuất</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item"><a href="/User/Logout" class="nav-link">Đăng xuất</a></li>-->
+                    <li class="nav-item"><a href="" class="nav-link">Liên hệ</a></li>
                 }
 
             </ul>

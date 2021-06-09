@@ -1,0 +1,146 @@
+﻿@using Model.EF;
+@model Model.EF.Model.TourDetailComment
+@{
+    var list_comment = (List<TourComment>)ViewBag.list_comment;
+    var list_suggest = (List<Tour>)ViewBag.list_suggest;
+    int days_of_tour = (Model.checkout_date - Model.checkin_date).Days;
+}
+@section js_footer {
+    <script src="~/Scripts/Commons/Common.js"></script>
+    <script src="~/Scripts/Controllers/LoginController.js"></script>
+    <script src="~/Scripts/Controllers/TourController.js"></script>
+    <script src="~/Scripts/Validation/LoginValidation.js"></script>
+    <script src="~/Scripts/Validation/RegisterValidation.js"></script>
+    <script src="~/Scripts/Commons/AlertBox.js"></script>
+}
+@section modal {
+    @Html.Partial("~/Views/Tour/_AlertBox.cshtml")
+    @Html.Partial("~/Views/Login/_LoginFormModal.cshtml")
+}
+<section class="container">
+    <div class="w-100">
+        @Html.Partial("~/Views/Shared/_Breadcrumb.cshtml")
+        <h1 class="title-block">@Model.name</h1>
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <span class="img-responsive">
+                    <img src="@Model.main_image" alt="">
+                </span>
+            </div>
+            <div class="col-lg-4 col-12 bgphone">
+                <div class="mr-auto float-left w-100">
+                    <div class="w-25 float-left">
+                        <span class="ion-ios-star"></span>
+                        <span class="ion-ios-star"></span>
+                        <span class="ion-ios-star"></span>
+                        <span class="ion-ios-star"></span>
+                        <span class="ion-ios-star"></span>
+                    </div>
+                    <span class="rate-count w-75 ml-1">
+                        @Model.rating/5 trong @Model.rating_count đánh giá
+                    </span>
+                    <div class="star-rating-2">
+                        @for (int i = 0; i < Model.rating; i++)
+                        {
+                            <span class="ion-ios-star text-warning"></span>
+                        }
+                    </div>
+
+                </div>
+                <p class="view"><i class="icon icon-eye"></i>@Model.view_count lượt</p>
+                <div class="block-start-day">
+                    <p>Khởi hành: <span>@Model.checkin_date.ToString("dd/MM/yyyy")</span></p>
+                    <p>Thời gian: <span>@days_of_tour ngày</span></p>
+                    <p>Nơi khởi hành: <span>@Model.departure_place</span></p>
+                </div>
+                <div class="block-cost">
+                    <p class="text-cost text-danger">@Model.price $</p>
+                    <p class="end-chair">Số chỗ còn nhận: <span class="red">@Model.remaining_slot</span></p>
+                </div>
+                <div class="block-support mt-5">
+                    <a href="/Booking?id=@Model.id" class="btn btn-block p-2" id="btnBookTour" target="_blank">
+                        Đặt tour ngay
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container pro-details">
+    <div class="row">
+        <div class="col-lg-3 col-12">
+            <ul class="nav nav-tabs edit">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">CHƯƠNG TRÌNH TOUR</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu1">Chi tiết tour</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Lưu ý</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Ngày khác</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Ý kiến khách hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Liên hệ</a>
+                </li>
+            </ul>
+
+            <div class="block-contact">
+                <h3 class="title">DỊCH VỤ KÈM TOUR</h3>
+                <ul>
+                    <li>Bữa ăn theo chương trình</li>
+                    <li>Bảo hiểm</li>
+                    <li>Hướng dẫn viên</li>
+                    <li>Vé tham quan</li>
+                    <li>Vận chuyển</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9 col-12">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <div class="content">
+                        <h3 class="title font-weight-bold">CHƯƠNG TRÌNH TOUR</h3>
+                        <div class="text">
+                            @Html.Raw(Model.description)
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="menu1">
+                    <div class="content">
+                        <h3 class="title">CHI TIẾT TOUR</h3>
+                        <div class="text">
+                            @Html.Raw(Model.departure_detail)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container mt-3">
+    <p class="text-uppercase title-black">Các tour tương tự</p>
+    <div class="row">
+        @foreach (var item in list_suggest)
+        {
+            <div class="col-lg-3 col-6">
+                <div class="img-item">
+                    <a href="/Tour?id=@item.id" title="" class="img-responsive d-block img">
+                        <img src="@item.image" alt="">
+                        <span class="d-block create-time">@item.checkin_date.ToString("dd/MM/yyyy") - @item.days_of_tour ngày - @item.total_slot chỗ</span>
+                    </a>
+                    <div class="text bg-gray">
+                        <h3><a href="/Tour?id=@item.id" title="">@item.name</a></h3>
+                        <span class="d-block text-danger">@item.price $</span>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>

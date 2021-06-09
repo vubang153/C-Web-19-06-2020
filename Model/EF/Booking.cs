@@ -17,6 +17,12 @@ namespace Model.EF
 
         public DateTime booking_date { get; set; }
 
+        public int payments { get; set; }
+
+        public long total_payment { get; set; }
+
         public int status { get; set; }
+
+        public virtual Tour Tour { get; set; }
     }
 }

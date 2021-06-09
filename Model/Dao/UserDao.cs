@@ -49,6 +49,33 @@ namespace Model.DAO
                 }
             }
         }
+        public int authentication(string username, string password, int permission)
+        {
+            var result = db.Users.SingleOrDefault(x => x.username == username && x.permission.Equals(2));
+            if (result == null)
+            {
+                return ACCOUNT.NOT_EXIST;
+            }
+            else
+            {
+                if (result.status == ACCOUNT.WAS_BANNED)
+                {
+                    return ACCOUNT.WAS_BANNED;
+                }
+                else
+                {
+                    if (result.password == password)
+                    {
+                        return ACCOUNT.LOGIN_SUCCESS;
+                    }
+                    else
+                    {
+                        return ACCOUNT.WRONG_PASSWORD;
+                    }
+                }
+            }
+        }
+
         // get ID
         public User getID(string username)
         {
@@ -58,7 +85,7 @@ namespace Model.DAO
         // Get users list
         public IEnumerable<User> getUsers(int page, int pageSize, string keyword)
         {
-            IQueryable<User> model = db.Users;
+            IQueryable<User> model = db.Users.Where(x => x.permission == 1);
             if (!string.IsNullOrEmpty(keyword))
             {
                 model = model.Where(x => x.username.Contains(keyword));
@@ -144,6 +171,10 @@ namespace Model.DAO
                     user.password = user.password;
                 else
                     user.password = entity.password;
+                if (user.gender == entity.gender)
+                    user.gender = user.gender;
+                else
+                    user.gender = entity.gender;
 
                 db.SaveChanges();
                 return true;

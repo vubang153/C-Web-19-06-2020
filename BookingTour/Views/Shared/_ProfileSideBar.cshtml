@@ -1,0 +1,47 @@
+﻿@using Model.EF;
+@{
+    var user_session = (User)Session["user"];
+}
+<div class="profile-sidebar">
+    <div class="profile-header">
+        <div class="profile-header-inner">
+            <span>Tên tài khoản: </span>
+            <b class="text-center">@user_session.username</b>
+        </div>
+    </div>
+    <div class="profile-menu">
+        <ul>
+            <li>
+                <b>
+                    <i class="far fa-user"></i>
+                    Quản lý tài khoản
+                </b>
+                <ul>
+                    <li>
+                        Hồ sơ
+                    </li>
+                    <li>
+                        Ngân hàng
+                    </li>
+                    <li>
+                        Địa chỉ
+                    </li>
+                    <li>
+                        Thêm mật khẩu
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <i class="far fa-sticky-note"></i>
+                <b>Đơn mua</b>
+            </li>
+            <li>
+                <i class="far fa-bell"></i>
+
+                <b>Thông báo</b>
+            </li>
+
+        </ul>
+    </div>
+</div>
+

@@ -35,7 +35,7 @@ namespace BookingTour.Areas.Admin
         [HttpPost]
         public ActionResult Index(LoginModel model)
         {
-            int result = new UserDAO().authentication(model.Username, model.Password);
+            int result = new UserDAO().authentication(model.Username, model.Password, 2);
             if (result == ACCOUNT.LOGIN_SUCCESS)
             {
                 if (model.RememberMe)

@@ -1,0 +1,121 @@
+﻿@using Model.EF;
+@model User
+@{
+    var date = Model.DOB.Value.ToString("dd/MM/yyyy");
+}
+@section js_footer {
+    <script src="~/Scripts/Commons/Common.js"></script>
+    <script src="~/Scripts/Commons/AlertBox.js"></script>
+}
+@section modal {
+    @Html.Partial("~/Views/Tour/_AlertBox.cshtml")
+    @Html.Partial("~/Views/Login/_LoginFormModal.cshtml")
+}
+
+<section class="container mb-5 profile-page">
+    <div class="w-100 bg-page">
+        <nav aria-label="breadcrumb" id="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                    <a href="/Home">Trang chủ</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a href="#">Quản lý tài khoản</a>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-3">
+                @Html.Partial("_ProfileSideBar")
+            </div>
+            <div class="col-9">
+                <div class="profile-content">
+                    <div class="profile-header">
+                        <div class="profile-header-inner">
+                            <h3 class="font-weight-bold text-white">Hồ sơ của tôi</h3>
+                            <p>
+                                Quản lý thông tin hồ sơ để bảo mật tài khoản
+                            </p>
+                        </div>
+                    </div>
+                    <div class="profile-body">
+                        <table class="w-100 profile-table">
+                            <tr>
+                                <td class="prof-title">
+                                    Tên đăng nhập
+                                </td>
+                                <td>
+                                    @Model.username
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="prof-title">
+                                    Tên
+                                </td>
+                                <td>
+                                    @Model.name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="prof-title">
+                                    Email
+                                </td>
+                                <td>
+                                    @Model.email
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="prof-title">
+                                    Giới tính
+                                </td>
+                                <td>
+                                    @if (Model.gender.Value)
+                                    {
+                                        <input type="radio" value="true" name="gender" checked id="male-gender" disabled />
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" value="true" name="gender" id="male-gender" disabled />
+                                    }
+                                    <label for="male-gender">Nam</label>
+
+
+                                    @if (!Model.gender.Value)
+                                    {
+                                        <input type="radio" value="false" name="gender" checked id="female-gender" disabled />
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" value="false" name="gender" id="female-gender" disabled />
+                                    }
+                                    <label for="female-gender">Nữ</label>
+
+
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="prof-title">
+                                    Ngày sinh
+                                </td>
+                                <td>
+                                    @date
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="prof-title">
+                                    Địa chỉ
+                                </td>
+                                <td>
+                                    @Model.address
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

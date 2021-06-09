@@ -35,12 +35,16 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="@item.image" class="img-fluid" alt="Colorlib Template">
+                            <a href="/Tour?id=@item.id">
+                                <img src="@item.image" class="img-fluid" alt="Colorlib Template">
+                            </a>
                         </div>
                         <div class="text">
                             <h4 class="price">$ @item.price</h4>
                             <span>Tour @item.days_of_tour ngày</span>
-                            <h3><a href="project.html">@item.name</a></h3>
+                            <h3>
+                                <a href="/Tour?id=@item.id" class="tour-name">@item.name</a>
+                            </h3>
                             <div class="star d-flex clearfix">
                                 <div class="mr-auto float-left">
                                     <span class="ion-ios-star"></span>

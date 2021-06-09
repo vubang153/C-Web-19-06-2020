@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BookingTour.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         // GET: Admin/User
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)

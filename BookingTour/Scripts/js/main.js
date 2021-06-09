@@ -297,7 +297,7 @@
 
 
   $('.checkin_date, .checkout_date, .date-picker').datepicker({
-	  'format': 'd/m/yyyy',
+	  'format': 'dd/mm/yyyy',
 	  'autoclose': true
 	});
 

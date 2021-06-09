@@ -58,23 +58,32 @@
   <ItemGroup>
     <Compile Include="Commons\ACCOUNT.cs" />
     <Compile Include="Commons\SESSION.cs" />
+    <Compile Include="Dao\AccountBlanceDAO.cs" />
     <Compile Include="Dao\BookingDAO.cs" />
-    <Compile Include="Dao\TourCategoryDAO.cs" />
+    <Compile Include="Dao\CityDAO.cs" />
     <Compile Include="Dao\DistrictDAO.cs" />
     <Compile Include="Dao\ProvinceDAO.cs" />
+    <Compile Include="Dao\TourCategoryDAO.cs" />
     <Compile Include="Dao\TourCommentDAO.cs" />
     <Compile Include="Dao\TourDAO.cs" />
+    <Compile Include="Dao\TourDetailDAO.cs" />
     <Compile Include="Dao\UserDao.cs" />
+    <Compile Include="EF\Account_blance.cs" />
     <Compile Include="EF\Booking.cs" />
     <Compile Include="EF\BookingTourDbContext.cs" />
+    <Compile Include="EF\City.cs" />
     <Compile Include="EF\District.cs" />
     <Compile Include="EF\Model\BookingUserTour.cs" />
+    <Compile Include="EF\Model\ListOrder.cs" />
     <Compile Include="EF\Model\TourCommentTour.cs" />
+    <Compile Include="EF\Model\TourDetailComment.cs" />
     <Compile Include="EF\Province.cs" />
     <Compile Include="EF\Tour.cs" />
     <Compile Include="EF\TourCategory.cs" />
     <Compile Include="EF\TourComment.cs" />
+    <Compile Include="EF\Tour_Detail.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="Model\PreOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

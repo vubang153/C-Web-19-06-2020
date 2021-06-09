@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BookingTour.Areas.Admin.Controllers
 {
-    public class TourCommentController : Controller
+    public class TourCommentController : BaseController
     {
         // GET: Admin/TourComment
         public ActionResult Index(string searchString, int page = 1, int pageSize = 12)

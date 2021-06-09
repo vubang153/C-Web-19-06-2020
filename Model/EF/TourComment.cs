@@ -12,10 +12,11 @@ namespace Model.EF
         public long id { get; set; }
 
         public long tour_id { get; set; }
-        public int status { get; set; }
+
         [Column(TypeName = "ntext")]
         [Required]
         public string comment_content { get; set; }
 
+        public int status { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BookingTour.Models;
+using Model.Dao;
 using Model.DAO;
 using Model.EF;
 using System;
@@ -45,6 +46,7 @@ namespace BookingTour.Controllers
         public ActionResult Register(User user)
         {
             var result = new UserDAO().Insert(user);
+            var account_blance = new AccountBlanceDAO().Insert(result);
             if (result > 0)
             {
                 this.addSessionAfterRegister(user);
@@ -71,6 +73,28 @@ namespace BookingTour.Controllers
             userInfo["rememberMe"] = model.rememberMe.ToString();
             userInfo.Expires.Add(new TimeSpan(0, 1, 0));
             Response.Cookies.Add(userInfo);
+        }
+        public new ActionResult Profile()
+        {
+            ViewBag.title = "Thông tin tài khoản";
+            var userSession = (User)Session["user"];
+            var model = new UserDAO().getViewDetail(userSession.id);
+            return View(model);
+        }
+        public ActionResult Order()
+        {
+            if (Session["user"] != null)
+            {
+                ViewBag.title = "Danh sách order";
+                var user_id = ((User)Session["user"]).id;
+                var model = new BookingDAO().getAll(user_id);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
     }
 }

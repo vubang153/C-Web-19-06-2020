@@ -64,9 +64,9 @@ namespace Model.Dao
             time = tour.checkout_date - tour.checkin_date;
             tour.status = 1;
             tour.days_of_tour = time.Days;
-            db.Tours.Add(tour);
+            var model = db.Tours.Add(tour);
             db.SaveChanges();
-            return tour.id;
+            return model.id;
         }
         public Tour getViewDetail(long id)
         {
@@ -116,6 +116,29 @@ namespace Model.Dao
                 throw;
             }
         }
-
+        public List<Tour> getSuggestTourByCategoryId(long c_id)
+        {
+            var model = db.Tours.Where(x => x.category == c_id).OrderByDescending(x => x.id).Skip(1).Take(4).ToList();
+            if (model.Count < 1)
+            {
+                model = db.Tours.Where(x => x.status == 1).OrderByDescending(x => x.id).Take(4).ToList();
+            }
+            return model;
+        }
+        public bool updateViewCount(long id)
+        {
+            try
+            {
+                var tour = db.Tours.Find(id);
+                tour.view_count += 1;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
     }
 }

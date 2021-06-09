@@ -4,6 +4,15 @@
 @section custom_css {
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
+@section js_footer {
+    <script src="~/Scripts/Controllers/BookingController.js"></script>
+    <script src="~/Scripts/Commons/Common.js">
+    </script>
+    <script>
+        common.setSelectedOption(".booking-state");
+    </script>
+}
+
 <section class="tables-section">
     <!-- table7 -->
     <div class="outer-w3-agile mt-3">
@@ -13,10 +22,12 @@
             {
                 <input class="form-control mr-sm-2" value="@ViewBag.searchString" type="search" placeholder="Nhập từ khoá" aria-label="Search" name="searchString">
                 <button class="btn btn-style my-2 my-sm-0" type="submit">Tìm kiếm</button>
-                <select class="form-control ml-5 font-weight-bold border-secondary" name="selectOption" id="selectOption">
-                    <option selected value="2">Tất cả</option>
-                    <option value="1">Hoàn thành</option>
-                    <option value="0">Chưa hoàn thành</option>
+                <select class="form-control ml-5 font-weight-bold border-secondary" name="selectOption" id="selectOption" onchange="location = this.value">
+                    <option value="/Admin/Booking?type=4">Tất cả</option>
+                    <option value="/Admin/Booking?type=1">Chờ xác nhận</option>
+                    <option value="/Admin/Booking?type=2">Đang thực hiện</option>
+                    <option value="/Admin/Booking?type=3">Đã hoàn thành</option>
+                    <option value="/Admin/Booking?type=0">Đã huỷ</option>
                 </select>
 
             }
@@ -46,7 +57,14 @@
                             <td>@item.booking_date</td>
                             <td>@item.checkin_date</td>
                             <td>@item.checkout_date</td>
-                            <td>@Commons.convertString(item.status, "Hoàn thành", "Chưa hoàn thành")</td>
+                            <td>
+                                <select data-bind="@item.status" name="bookingState" class="booking-state" id="@item.id">
+                                    <option value="1" >Chờ xác nhận</option>
+                                    <option value="2" >Đang thực hiện</option>
+                                    <option value="3" >Đã hoàn thành</option>
+                                    <option value="4" >Đã huỷ</option>
+                                </select>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -57,8 +75,5 @@
     </div>
     <!-- Script query to show modal form-->
     <!-- Render modal form and it script-->
-    @section js_footer {
-        <script src="~/Areas/Admin/Content/js/controller/BookingController.js"></script>
-    }
 
 </section>
